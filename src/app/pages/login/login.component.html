@@ -1,0 +1,55 @@
+<div class="container form-container">
+  <div class="form">
+    <form [formGroup]="loginForm" novalidate (ngSubmit)="login()">
+      <div class="row">
+        <div class="col-12">
+          <label for="username" class="form-label">Username</label>
+          <input
+            formControlName="username"
+            type="username"
+            id="password"
+            class="form-control shadow-none"
+          />
+          @if (
+            loginForm.get("username").errors && loginForm.get("username").dirty
+          ) {
+            @for (
+              error of object.keys(loginForm.get("username").errors);
+              track $index
+            ) {
+              <div class="form-text form-error">
+                {{ "username_" + error | translate }}
+              </div>
+            }
+          }
+        </div>
+        <div class="col-12">
+          <label for="password" class="form-label">Password</label>
+          <input
+            formControlName="password"
+            type="password"
+            id="password"
+            class="form-control shadow-none"
+          />
+          @if (
+            loginForm.get("password").errors && loginForm.get("password").dirty
+          ) {
+            @for (
+              error of object.keys(loginForm.get("password").errors);
+              track $index
+            ) {
+              <div class="form-text form-error">
+                {{ "password_" + error | translate }}
+              </div>
+            }
+          }
+        </div>
+        <div class="col-12 text-center mt-3">
+          <button class="btn btn-primary" [disabled]="!loginForm.valid">
+            Sign in
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

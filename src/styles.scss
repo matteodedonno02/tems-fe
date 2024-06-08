@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+
+    .form {
+        width: 50%;
+    }
+
+    .form-error {
+        color: red;
+    }
+}
+
+.btn[disabled] {
+    opacity: 0.2;
+}
