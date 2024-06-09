@@ -1,4 +1,9 @@
 <div class="container form-container">
+  <app-toast
+    idToast="login-failed-toast"
+    [message]="loginFailedMessage"
+  ></app-toast>
+
   <div class="form">
     <form [formGroup]="loginForm" novalidate (ngSubmit)="login()">
       <div class="row">
@@ -53,9 +58,3 @@
     </form>
   </div>
 </div>
-
-<app-toast
-  id="login-failed-toast"
-  [message]="loginFailedMessage"
-  [title]="loginFailedTitle"
-></app-toast>

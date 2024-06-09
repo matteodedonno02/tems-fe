@@ -11,7 +11,6 @@ import { SharedModule } from '../../shared/shared.module';
   styleUrl: './toast.component.scss'
 })
 export class ToastComponent {
-  @Input() id: string = ''
-  @Input() title: string = ''
+  @Input() idToast: string = ''
   @Input() message: string = ''
 }

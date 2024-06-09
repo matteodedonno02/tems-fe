@@ -5,11 +5,13 @@ import { SharedModule } from '../../shared/shared.module';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { Router } from '@angular/router';
 import { Toast } from 'bootstrap';
+import { ToastComponent } from '../../components/toast/toast.component';
 
 @Component({
   selector: 'app-login',
   imports: [
-    SharedModule
+    SharedModule,
+    ToastComponent
   ],
   standalone: true,
   templateUrl: './login.component.html',
@@ -22,8 +24,7 @@ export class LoginComponent implements OnInit {
 
   readonly object = Object
 
-  loginFailedMessage: string
-  loginFailedTitle: string
+  loginFailedMessage: string = ''
 
   constructor(
     private usersService: UsersService,
@@ -50,9 +51,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/admin'])
         },
         error: (response) => {
-          this.loginFailedMessage = 'login_fail'
-          this.loginFailedTitle = response.error.message
-          new Toast('#login-failed-toast').show()
+          this.loginFailedMessage = response.error.message
+          new Toast(document.querySelector('#login-failed-toast')).show()
         }
       })
   }

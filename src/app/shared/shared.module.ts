@@ -3,19 +3,19 @@ import { CommonModule, NgFor } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ToastComponent } from '../components/toast/toast.component';
+import { LoginComponent } from '../pages/login/login.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
-    CommonModule,
-    ToastComponent
+    CommonModule
   ],
   exports: [
     ReactiveFormsModule,
     TranslateModule,
-    CommonModule,
-    ToastComponent
+    CommonModule
   ]
 })
 export class SharedModule { }
