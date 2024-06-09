@@ -1,0 +1,47 @@
+<div class="container text-center">
+  <i class="icon-title fa-solid fa-bag-shopping pt-3"></i>
+  <div class="title pt-3 pb-3">
+    {{ "welcome" | translate }}
+  </div>
+  <div class="subtitile">
+    {{ "configure_shop" | translate }}
+  </div>
+
+  <form [formGroup]="shopForm" novalidate (ngSubmit)="saveConfiguration()">
+    <div class="form-container pt-3">
+      <div class="form">
+        <div class="row">
+          <div class="col-12 form-col pb-4">
+            <label for="shop-name" class="form-label">
+              {{ "shop_name" | translate }}
+            </label>
+            <input
+              formControlName="shopName"
+              type="text"
+              id="shop-name"
+              class="form-control shadow-none"
+            />
+          </div>
+          <div class="col-12 form-col">
+            <label for="shop-logo" class="form-label">
+              {{ "shop_logo" | translate }}
+            </label>
+            <input
+              formControlName="shopLogo"
+              class="form-control"
+              type="file"
+              id="shop-logo"
+              accept="image/*"
+              (change)="onImagePicked($event)"
+            />
+          </div>
+          <div class="col-12 text-center mt-3">
+            <button class="btn btn-primary" [disabled]="!shopForm.valid">
+              {{ "configure" | translate | titlecase }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

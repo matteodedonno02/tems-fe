@@ -2,5 +2,10 @@
     "username_required": "Username non valorizzato",
     "password_required": "Password non valorizzata",
     "user_not_found": "Utente non trovato",
-    "login_fail": "Username e/o password errati"
+    "login_fail": "Username e/o password errati",
+    "welcome": "Benvenuto in TEMS",
+    "configure_shop": "Configura il tuo shop",
+    "shop_name": "Nome dello shop",
+    "shop_logo": "Logo dello shop",
+    "configure": "configura"
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as crypto from 'crypto-js'
 import { environment } from '../../environments/environment';
+import { UserRole } from '../models/user-role';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import { environment } from '../../environments/environment';
 export class LocalStorageService {
 
   private readonly TOKEN_KEY = 'token'
+  private readonly ROLE_KEY = 'role'
 
   private privateKey: string
 
@@ -26,6 +28,14 @@ export class LocalStorageService {
 
   clearToken() {
     localStorage.removeItem(this.TOKEN_KEY)
+  }
+
+  setRole(value: UserRole) {
+    localStorage.setItem(this.ROLE_KEY, value)
+  }
+
+  getRole(): UserRole {
+    return localStorage.getItem(this.ROLE_KEY) as UserRole
   }
 
   private encrypt(data: string) {

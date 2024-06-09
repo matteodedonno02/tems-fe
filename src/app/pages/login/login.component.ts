@@ -6,6 +6,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
 import { Router } from '@angular/router';
 import { Toast } from 'bootstrap';
 import { ToastComponent } from '../../components/toast/toast.component';
+import { UserRole } from '../../models/user-role';
 
 @Component({
   selector: 'app-login',
@@ -46,9 +47,14 @@ export class LoginComponent implements OnInit {
     const password = this.loginForm.get('password')?.value
     this.usersService.login(username, password)
       .subscribe({
-        next: (response: {token: string}) => {
+        next: (response: {token: string, role: UserRole,shopExists: boolean}) => {
           this.localStorageService.setToken(response.token)
-          this.router.navigate(['/admin'])
+          this.localStorageService.setRole(response.role)
+          if(!response.shopExists && response.role === UserRole.superadmin) {
+            this.router.navigate(['/configuration'])
+          } else {
+            this.router.navigate(['/admin'])
+          }
         },
         error: (response) => {
           this.loginFailedMessage = response.error.message
