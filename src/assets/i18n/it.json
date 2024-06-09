@@ -1,5 +1,6 @@
 {
     "username_required": "Username non valorizzato",
     "password_required": "Password non valorizzata",
-    "user_not_found": "Utente non trovato"
+    "user_not_found": "Utente non trovato",
+    "login_fail": "Username e/o password errati"
 }
