@@ -1,0 +1,15 @@
+<div class="container">
+  @for (categoryRow of categories;
+    track $index) {
+    <div class="row">
+      @for (category of categoryRow;
+        track $index) {
+        @if (category != null) {
+          <div class="col-12 col-sm-6">
+            <app-category-card [category]="category"/>
+          </div>
+        }
+      }
+    </div>
+  }
+</div>

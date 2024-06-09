@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { Router } from '@angular/router';
+import {ARTICLE, LOGIN} from "../../util/path-const";
 
 @Component({
   selector: 'app-admin',
@@ -21,6 +22,6 @@ export class AdminComponent {
 
   logout() {
     this.localStorageService.clearToken()
-    this.router.navigate(['/login'])
+    this.router.navigate([`/${LOGIN}`])
   }
 }

@@ -6,6 +6,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
 import { Router } from '@angular/router';
 import { Toast } from 'bootstrap';
 import { ToastComponent } from '../../components/toast/toast.component';
+import {ADMIN, ARTICLE} from "../../util/path-const";
 
 @Component({
   selector: 'app-login',
@@ -41,14 +42,14 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    
+
     const username = this.loginForm.get('username')?.value
     const password = this.loginForm.get('password')?.value
     this.usersService.login(username, password)
       .subscribe({
         next: (response: {token: string}) => {
           this.localStorageService.setToken(response.token)
-          this.router.navigate(['/admin'])
+          this.router.navigate([`/${ADMIN}`])
         },
         error: (response) => {
           this.loginFailedMessage = response.error.message

@@ -1,0 +1,17 @@
+<div
+  [id]="category.idCategory"
+  class="card"
+  aria-live="assertive"
+  aria-atomic="true"
+  (click)="showArticlesForCategory(category)">
+  <div class="card" style="width: 18rem;">
+    <!--
+        &lt;!&ndash;TODO:fix when image is gonna be a file&ndash;&gt;
+        {{category.image}}
+    -->
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <div class="card-title"> {{ category.name }}</div>
+    </div>
+  </div>
+</div>
