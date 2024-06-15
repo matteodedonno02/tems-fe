@@ -7,5 +7,11 @@
     "configure_shop": "Configura il tuo shop",
     "shop_name": "Nome dello shop",
     "shop_logo": "Logo dello shop",
-    "configure": "configura"
+    "configure": "configura",
+    "next": "prosegui",
+    "new-password": "Nuova password",
+    "new-password_required": "Nuova password non valorizzata",
+    "new-password_minlength": "La nuova password deve essere lunga almeno 8 caratteri",
+    "new-password_pattern": "La nuova password deve contenere almeno una lettera maiuscola e almeno un numero",
+    "malformed_password": "Errore nella modifica della password!"
 }

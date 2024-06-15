@@ -1,3 +1,5 @@
+<app-toast idToast="change-password-failed-toast" [message]="changePasswordFailedMessage"></app-toast>
+
 <div class="container text-center">
   <i class="icon-title fa-solid fa-bag-shopping pt-3"></i>
   <div class="title pt-3 pb-3">
@@ -7,41 +9,78 @@
     {{ "configure_shop" | translate }}
   </div>
 
-  <form [formGroup]="shopForm" novalidate (ngSubmit)="saveConfiguration()">
-    <div class="form-container pt-3">
-      <div class="form">
-        <div class="row">
-          <div class="col-12 form-col pb-4">
-            <label for="shop-name" class="form-label">
-              {{ "shop_name" | translate }}
-            </label>
-            <input
-              formControlName="shopName"
-              type="text"
-              id="shop-name"
-              class="form-control shadow-none"
-            />
-          </div>
-          <div class="col-12 form-col">
-            <label for="shop-logo" class="form-label">
-              {{ "shop_logo" | translate }}
-            </label>
-            <input
-              formControlName="shopLogo"
-              class="form-control"
-              type="file"
-              id="shop-logo"
-              accept="image/*"
-              (change)="onImagePicked($event)"
-            />
-          </div>
-          <div class="col-12 text-center mt-3">
-            <button class="btn btn-primary" [disabled]="!shopForm.valid">
-              {{ "configure" | translate | titlecase }}
-            </button>
+  <swiper-container allowTouchMove="false">
+    <swiper-slide>
+      <ng-container *ngTemplateOutlet="slide1">
+      </ng-container>
+    </swiper-slide>
+    <swiper-slide>
+      <ng-container *ngTemplateOutlet="slide2">
+      </ng-container>
+    </swiper-slide>
+  </swiper-container>
+
+  <ng-template #slide1>
+    <form [formGroup]="newPasswordForm" novalidate (ngSubmit)="changePassword()">
+      <div class="form-container pt-3">
+        <div class="form">
+          <div class="row">
+            <div class="col-12 form-col pb-4">
+              <label for="new-password" class="form-label">
+                {{ "new-password" | translate }}
+              </label>
+              <input formControlName="newPassword" type="text" id="new-password" class="form-control shadow-none" />
+              @if (
+              newPasswordForm.get("newPassword").errors && newPasswordForm.get("newPassword").dirty
+              ) {
+              @for (
+              error of object.keys(newPasswordForm.get("newPassword").errors);
+              track $index
+              ) {
+              <div class="form-text form-error">
+                {{ "new-password_" + error | translate }}
+              </div>
+              }
+              }
+            </div>
+            <div class="col-12 text-center mt-3">
+              <button class="btn btn-primary" [disabled]="!newPasswordForm.valid">
+                {{ "next" | translate | titlecase }}
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </ng-template>
+
+  <ng-template #slide2>
+    <form [formGroup]="shopForm" novalidate (ngSubmit)="saveConfiguration()">
+      <div class="form-container pt-3">
+        <div class="form">
+          <div class="row">
+            <div class="col-12 form-col pb-4">
+              <label for="shop-name" class="form-label">
+                {{ "shop_name" | translate }}
+              </label>
+              <input formControlName="shopName" type="text" id="shop-name" class="form-control shadow-none" />
+            </div>
+            <div class="col-12 form-col">
+              <label for="shop-logo" class="form-label">
+                {{ "shop_logo" | translate }}
+              </label>
+              <input formControlName="shopLogo" class="form-control" type="file" id="shop-logo" accept="image/*"
+                (change)="onImagePicked($event)" />
+            </div>
+            <div class="col-12 text-center mt-3">
+              <button class="btn btn-primary" [disabled]="!shopForm.valid">
+                {{ "configure" | translate | titlecase }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+
 </div>

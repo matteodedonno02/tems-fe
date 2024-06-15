@@ -21,4 +21,8 @@ export class UsersService {
       password
     })
   }
+
+  changePassword(newPassword: string) {
+    return this.http.post(`${this.baseUrl}/auth/change-password`, { newPassword })
+  }
 }

@@ -42,15 +42,14 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    
     const username = this.loginForm.get('username')?.value
     const password = this.loginForm.get('password')?.value
     this.usersService.login(username, password)
       .subscribe({
-        next: (response: {token: string, role: UserRole,shopExists: boolean}) => {
+        next: (response: { token: string, role: UserRole, shopExists: boolean }) => {
           this.localStorageService.setToken(response.token)
           this.localStorageService.setRole(response.role)
-          if(!response.shopExists && response.role === UserRole.superadmin) {
+          if (!response.shopExists && response.role === UserRole.superadmin) {
             this.router.navigate(['/configuration'])
           } else {
             this.router.navigate(['/admin'])
