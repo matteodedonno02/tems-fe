@@ -1,1 +1,24 @@
-<p>categories works!</p>
+<div class="container-fluid">
+    <table *ngIf="categories.length" class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">{{'name' | translate | titlecase}}</th>
+                <th scope="col">{{'disabled' | translate | titlecase}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let category of categories; index as i">
+                <tr>
+                    <th class="header-row" scope="row">
+                        {{i + 1}}
+                        <img [src]="environment.baseApi + '/file/' + category.image.uuid">
+                    </th>
+                    <td>{{category.name}}</td>
+                    <td>{{category.disabled.toString() | translate | titlecase}}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+
+</div>

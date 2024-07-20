@@ -17,5 +17,9 @@
     "category_management": "Gestione categorie",
     "manage_existing_categories": "Gestisci categorie esistenti",
     "existing_categories": "Categorie esistenti",
-    "add_category": "Aggiungi categoria"
+    "add_category": "Aggiungi categoria",
+    "name": "nome",
+    "disabled": "disabilitato",
+    "true": "si",
+    "false": "no"
 }
