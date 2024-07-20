@@ -5,6 +5,8 @@ import { ShopService } from './services/shop.service';
 import { Shop } from './models/shop';
 import { environment } from '../environments/environment';
 import { register } from 'swiper/element/bundle'
+import bootstrap from 'bootstrap'
+
 
 @Component({
   selector: 'app-root',

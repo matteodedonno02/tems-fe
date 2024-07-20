@@ -6,6 +6,7 @@ import { canLoginGuard } from './guards/can-login.guard';
 import { InitialConfigurationComponent } from './pages/initial-configuration/initial-configuration.component';
 import { roleGuard } from './guards/role.guard';
 import { UserRole } from './models/user-role';
+import { CategoriesComponent } from './pages/admin/admin-pages/categories/categories.component';
 
 export const routes: Routes = [
     {
@@ -16,7 +17,11 @@ export const routes: Routes = [
     {
         path: 'admin',
         canActivate: [adminLoggedGuard],
-        component: AdminComponent
+        component: AdminComponent,
+        children: [{
+            path: 'categories',
+            component: CategoriesComponent
+        }]
     },
     {
         path: 'configuration',

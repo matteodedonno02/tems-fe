@@ -5,6 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ToastComponent } from '../components/toast/toast.component';
 import { LoginComponent } from '../pages/login/login.component';
 import { Swiper } from "swiper"
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -12,11 +13,13 @@ import { Swiper } from "swiper"
   ],
   imports: [
     CommonModule,
+    NgbModule
   ],
   exports: [
     ReactiveFormsModule,
     TranslateModule,
-    CommonModule
+    CommonModule,
+    NgbModule
   ]
 })
 export class SharedModule { }
