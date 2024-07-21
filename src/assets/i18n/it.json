@@ -21,5 +21,8 @@
     "name": "nome",
     "disabled": "disabilitato",
     "true": "si",
-    "false": "no"
+    "false": "no",
+    "edit": "modifica",
+    "delete": "cancella",
+    "search": "Cerca"
 }

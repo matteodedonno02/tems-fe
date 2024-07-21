@@ -1,0 +1,40 @@
+<div class="container">
+    <input class="form-control me-2" type="search" [placeholder]="'search' | translate">
+
+    <div class="table-container" appInfiniteScroll (atBottom)="executeLoad()">
+        <table *ngIf="elements?.length" class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <ng-container *ngFor="let column of structure">
+                        <th scope="col">{{column.columnName | translate | titlecase}}</th>
+                    </ng-container>
+                    <th *ngIf="showEdit" scope="col">{{'edit' | translate | titlecase}}</th>
+                    <th *ngIf="showDelete" scope="col">{{'delete' | translate | titlecase}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let element of elements; index as i">
+                    <tr>
+                        <th class="header-row" scope="row">
+                            {{i + 1}}
+                            <!-- <img *ngIf="category.image" [src]="environment.baseApi + '/file/' + category.image.uuid"> -->
+                        </th>
+                        <ng-container *ngFor="let column of structure">
+                            <td>
+                                {{column.titlecase ? (element[column.columnName].toString() | translate | titlecase) :
+                                (element[column.columnName].toString() | translate)}}
+                            </td>
+                        </ng-container>
+                        <td *ngIf="showEdit" class="icon-row">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </td>
+                        <td *ngIf="showDelete" class="icon-row">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+</div>

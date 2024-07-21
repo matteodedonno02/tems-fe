@@ -6,15 +6,15 @@ import { ShopService } from '../../services/shop.service';
 import { Shop } from '../../models/shop';
 import { environment } from '../../../environments/environment';
 import { UsersService } from '../../services/users.service';
+import { AdminNavbarComponent } from '../../components/admin-navbar/admin-navbar.component';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
   imports: [
     SharedModule,
-    RouterOutlet,
-    RouterLink,
-    RouterLinkActive
+    AdminNavbarComponent,
+    RouterOutlet
   ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
@@ -42,7 +42,4 @@ export class AdminComponent implements OnInit {
       })
   }
 
-  logout() {
-    this.usersService.logout()
-  }
 }

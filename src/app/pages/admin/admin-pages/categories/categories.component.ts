@@ -3,33 +3,32 @@ import { SharedModule } from '../../../../shared/shared.module';
 import { Category } from '../../../../models/category';
 import { CategoriesService } from '../../../../services/categories.service';
 import { environment } from '../../../../../environments/environment';
+import { InfiniteScrollListComponent, TableColumn } from '../../../../components/infinite-scroll-list/infinite-scroll-list.component';
 
 @Component({
   selector: 'app-categories',
   standalone: true,
   imports: [
-    SharedModule
+    SharedModule,
+    InfiniteScrollListComponent
   ],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss'
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent {
 
-  categories: Category[] = []
-  environment = environment
-
+  tableStructure: TableColumn[] = [{
+    columnName: 'name',
+  }, {
+    columnName: 'disabled',
+    titlecase: true
+  }]
 
   constructor(
     private categoriesService: CategoriesService
   ) { }
 
-  ngOnInit() {
-    this.categoriesService.getPaged()
-      .subscribe({
-        next: (categories) => {
-          this.categories = categories
-          console.log(this.categories)
-        }
-      })
+  loadCategories(skip: number, limit: number) {
+    return this.categoriesService.getPaged(skip, limit)
   }
 }

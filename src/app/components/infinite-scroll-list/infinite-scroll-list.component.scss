@@ -1,0 +1,34 @@
+.header-row {
+    display: flex;
+    align-items: center;
+
+    img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}
+
+
+tr {
+    td {
+        vertical-align: baseline;
+    }
+}
+
+.icon-row {
+    text-align: center;
+}
+
+.table-container {
+    max-height: 200px;
+    /* Set desired height */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}

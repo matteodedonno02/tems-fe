@@ -6,6 +6,9 @@ import { ToastComponent } from '../components/toast/toast.component';
 import { LoginComponent } from '../pages/login/login.component';
 import { Swiper } from "swiper"
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InfiniteScrollDirective } from '../directives/infinite-scroll.directive';
+import { InfiniteScrollListComponent } from '../components/infinite-scroll-list/infinite-scroll-list.component';
+import { AdminNavbarComponent } from '../components/admin-navbar/admin-navbar.component';
 
 
 @NgModule({
@@ -13,13 +16,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     CommonModule,
-    NgbModule
+    NgbModule,
+    InfiniteScrollDirective,
   ],
   exports: [
     ReactiveFormsModule,
     TranslateModule,
     CommonModule,
-    NgbModule
+    NgbModule,
+    InfiniteScrollDirective,
   ]
 })
 export class SharedModule { }
