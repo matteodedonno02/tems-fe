@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SharedModule } from '../../../../shared/shared.module';
 import { Category } from '../../../../models/category';
 import { CategoriesService } from '../../../../services/categories.service';
-import { environment } from '../../../../../environments/environment';
 import { InfiniteScrollListComponent, TableColumn } from '../../../../components/infinite-scroll-list/infinite-scroll-list.component';
 
 @Component({
@@ -28,7 +27,11 @@ export class CategoriesComponent {
     private categoriesService: CategoriesService
   ) { }
 
-  loadCategories(skip: number, limit: number) {
-    return this.categoriesService.getPaged(skip, limit)
+  loadCategories(skip: number, limit: number, searchTerms?: string) {
+    return this.categoriesService.getPaged(skip, limit, searchTerms)
+  }
+
+  deleteCategory(category: Category) {
+    return this.categoriesService.deleteCategory(category.idCategory)
   }
 }

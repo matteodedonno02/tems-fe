@@ -16,7 +16,19 @@ export class CategoriesService {
     this.baseUrl = `${environment.baseApi}/category`
   }
 
-  getPaged(skip: number = 0, limit: number = 10) {
-    return this.http.get<Category[]>(`${this.baseUrl}/auth/paged/${skip}/${limit}`)
+  getPaged(skip: number, limit: number, searchTerms?: string) {
+    return this.http.get<Category[]>(`${this.baseUrl}/auth/paged/${skip}/${limit}`, searchTerms ? {
+      params: {
+        searchTerms
+      }
+    } : {})
+  }
+
+  deleteCategory(idCategory: number) {
+    return this.http.delete(`${this.baseUrl}/auth/delete`, {
+      body: {
+        idCategory
+      }
+    })
   }
 }

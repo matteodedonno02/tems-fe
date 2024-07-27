@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { LoginComponent } from "../../pages/login/login.component";
-import { Observable, Subscriber } from 'rxjs';
+import { debounceTime, Observable, Subscriber } from 'rxjs';
 
 export class TableColumn {
   columnName: string
@@ -20,24 +20,47 @@ export class TableColumn {
 })
 export class InfiniteScrollListComponent implements OnInit {
 
+  @Input() title: string
   @Input() structure: TableColumn[]
   @Input() elements: any[] = []
   @Input() showEdit: boolean = false
   @Input() showDelete: boolean = false
-  @Input() load: (skip: number, limit: number) => Observable<any[]>
+  @Input() load: (skip: number, limit: number, searchTerms?: string) => Observable<any[]>
+  @Input() delete: (element: any) => Observable<void>
 
-  readonly LIMIT = 10
+  searchTerms: string
+
+  readonly LIMIT = 20
+  readonly DEBOUNCE_TIME = 500
 
   ngOnInit() {
     this.executeLoad()
   }
 
   executeLoad() {
-    this.load(this.elements.length, this.LIMIT)
+    this.load(this.elements.length, this.LIMIT, this.searchTerms)
       .subscribe({
         next: (elements) => {
           this.elements.push(...elements)
         }
       })
+  }
+
+  searchTermsChanged() {
+    this.load(0, this.LIMIT, this.searchTerms)
+      .pipe(debounceTime(this.DEBOUNCE_TIME))
+      .subscribe({
+        next: (elements) => {
+          this.elements = elements
+        }
+      })
+  }
+
+  executeDelete(toDelete: any) {
+    this.delete(toDelete).subscribe({
+      next: () => {
+        this.elements = this.elements.filter(element => element !== toDelete)
+      }
+    })
   }
 }

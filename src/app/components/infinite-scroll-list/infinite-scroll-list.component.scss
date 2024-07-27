@@ -19,10 +19,11 @@ tr {
 
 .icon-row {
     text-align: center;
+    cursor: pointer;
 }
 
 .table-container {
-    max-height: 200px;
+    max-height: 80dvh;
     /* Set desired height */
     overflow-y: auto;
     /* Enable vertical scrolling */
@@ -31,4 +32,14 @@ tr {
 table {
     width: 100%;
     border-collapse: collapse;
+}
+
+.title-row {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    .title {
+        font-weight: 700;
+        font-size: 24px;
+    }
 }

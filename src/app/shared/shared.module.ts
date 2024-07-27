@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ToastComponent } from '../components/toast/toast.component';
 import { LoginComponent } from '../pages/login/login.component';
@@ -18,6 +18,7 @@ import { AdminNavbarComponent } from '../components/admin-navbar/admin-navbar.co
     CommonModule,
     NgbModule,
     InfiniteScrollDirective,
+    FormsModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -25,6 +26,7 @@ import { AdminNavbarComponent } from '../components/admin-navbar/admin-navbar.co
     CommonModule,
     NgbModule,
     InfiniteScrollDirective,
+    FormsModule
   ]
 })
 export class SharedModule { }

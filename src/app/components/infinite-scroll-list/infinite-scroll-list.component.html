@@ -1,5 +1,16 @@
 <div class="container">
-    <input class="form-control me-2" type="search" [placeholder]="'search' | translate">
+
+    <div class="row title-row">
+        <div class="col title">
+            {{title | translate | titlecase}}
+        </div>
+        <div class="col">
+            <input class="form-control me-2" type="search" [placeholder]="'search' | translate"
+                [(ngModel)]="searchTerms" (ngModelChange)="searchTermsChanged()">
+        </div>
+    </div>
+
+
 
     <div class="table-container" appInfiniteScroll (atBottom)="executeLoad()">
         <table *ngIf="elements?.length" class="table table-striped table-bordered">
@@ -30,7 +41,7 @@
                             <i class="fa-solid fa-pen-to-square"></i>
                         </td>
                         <td *ngIf="showDelete" class="icon-row">
-                            <i class="fa-solid fa-trash-can"></i>
+                            <i class="fa-solid fa-trash-can" (click)="executeDelete(element)"></i>
                         </td>
                     </tr>
                 </ng-container>
