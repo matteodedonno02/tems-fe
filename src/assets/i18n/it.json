@@ -30,5 +30,9 @@
     "no_elements": "Non ci sono elementi in questa sezione",
     "no_elements_while_search": "Non ci sono elementi con questo criterio di ricerca",
     "confirm": "conferma",
-    "cancel": "cancella"
+    "cancel": "cancella",
+  "field_required": "Campo vuoto",
+  "category_name_pattern": "Il campo deve contenere esclusivamente lettere o numeri",
+  "image": "Immagine",
+  "add": "Aggiungi"
 }

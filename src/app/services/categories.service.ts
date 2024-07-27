@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Category } from '../models/category';
-import { environment } from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Category} from '../models/category';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +30,12 @@ export class CategoriesService {
         idCategory
       }
     })
+  }
+
+  saveOrUpdate(categoryImage: File, category: Category) {
+    const fd: FormData = new FormData()
+    fd.append('file', categoryImage ?? null)
+    fd.append('json', JSON.stringify({category}))
+    return this.http.post<Promise<Category>>(`${this.baseUrl}/auth/saveOrUpdate`, fd)
   }
 }
