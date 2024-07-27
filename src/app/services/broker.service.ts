@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subscriber } from 'rxjs';
 
 export enum AppEvent {
-  OnElementDeleted
+  OnElementDeleted,
+  OnEditElement
 }
 
 @Injectable({
