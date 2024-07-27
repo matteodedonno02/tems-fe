@@ -1,4 +1,11 @@
 <div class="container-fluid">
+    <!-- <app-toast idToast="confirmCategoryDeletion" message="confirm_category_deletion" [button]="toastButton"></app-toast> -->
+
+    <app-modal idModal="confirmCategoryDeletion" [title]="modalTitle" (onConfirm)="modalConfirm()">
+        <subtitle>
+            <p>{{selectedCategory?.name}}</p>
+        </subtitle>
+    </app-modal>
 
     <app-infinite-scroll-list title="categories" [structure]="tableStructure" [showEdit]="true" [showDelete]="true"
         [load]="loadCategories.bind(this)" [delete]="deleteCategory.bind(this)"></app-infinite-scroll-list>

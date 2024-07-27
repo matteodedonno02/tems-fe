@@ -1,0 +1,10 @@
+.show {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+
+    .modal-dialog {
+        width: var(--bs-modal-width);
+    }
+}

@@ -25,5 +25,10 @@
     "edit": "modifica",
     "delete": "cancella",
     "search": "Cerca",
-    "categories": "categorie"
+    "categories": "categorie",
+    "confirm_category_deletion": "Sei sicuro di voler cancellare la seguente categoria?",
+    "no_elements": "Non ci sono elementi in questa sezione",
+    "no_elements_while_search": "Non ci sono elementi con questo criterio di ricerca",
+    "confirm": "conferma",
+    "cancel": "cancella"
 }

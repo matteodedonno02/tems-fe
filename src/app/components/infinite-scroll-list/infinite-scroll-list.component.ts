@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { LoginComponent } from "../../pages/login/login.component";
-import { debounceTime, Observable, Subscriber } from 'rxjs';
+import { debounceTime, finalize, Observable, Subscriber, Subscription } from 'rxjs';
+import { AppEvent, BrokerService } from '../../services/broker.service';
 
 export class TableColumn {
   columnName: string
@@ -18,7 +19,7 @@ export class TableColumn {
   templateUrl: './infinite-scroll-list.component.html',
   styleUrl: './infinite-scroll-list.component.scss'
 })
-export class InfiniteScrollListComponent implements OnInit {
+export class InfiniteScrollListComponent implements OnInit, OnDestroy {
 
   @Input() title: string
   @Input() structure: TableColumn[]
@@ -26,19 +27,37 @@ export class InfiniteScrollListComponent implements OnInit {
   @Input() showEdit: boolean = false
   @Input() showDelete: boolean = false
   @Input() load: (skip: number, limit: number, searchTerms?: string) => Observable<any[]>
-  @Input() delete: (element: any) => Observable<void>
+  @Input() delete: (element: any) => void
 
   searchTerms: string
 
+  onElementDeletedSubscription: Subscription
+
+  loading: boolean = true
+
   readonly LIMIT = 20
-  readonly DEBOUNCE_TIME = 500
+  readonly DEBOUNCE_TIME = 2000
+
+  constructor(
+    private brokerService: BrokerService
+  ) { }
 
   ngOnInit() {
     this.executeLoad()
+
+    this.onElementDeletedSubscription = this.brokerService.subscribe(AppEvent.OnElementDeleted, (value) => {
+      this.elements = this.elements.filter((element) => element !== value)
+    })
+  }
+
+  ngOnDestroy() {
+    this.onElementDeletedSubscription?.unsubscribe()
   }
 
   executeLoad() {
+    this.loading = true
     this.load(this.elements.length, this.LIMIT, this.searchTerms)
+      .pipe(finalize(() => this.loading = false))
       .subscribe({
         next: (elements) => {
           this.elements.push(...elements)
@@ -47,8 +66,12 @@ export class InfiniteScrollListComponent implements OnInit {
   }
 
   searchTermsChanged() {
+    this.loading = true
     this.load(0, this.LIMIT, this.searchTerms)
-      .pipe(debounceTime(this.DEBOUNCE_TIME))
+      .pipe(
+        debounceTime(this.DEBOUNCE_TIME),
+        finalize(() => this.loading = false)
+      )
       .subscribe({
         next: (elements) => {
           this.elements = elements
@@ -57,10 +80,6 @@ export class InfiniteScrollListComponent implements OnInit {
   }
 
   executeDelete(toDelete: any) {
-    this.delete(toDelete).subscribe({
-      next: () => {
-        this.elements = this.elements.filter(element => element !== toDelete)
-      }
-    })
+    this.delete(toDelete)
   }
 }
