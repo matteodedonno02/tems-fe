@@ -40,7 +40,7 @@
                                 (element[column.columnName].toString() | translate)}}
                             </td>
                         </ng-container>
-                        <td *ngIf="showEdit" class="icon-row">
+                        <td *ngIf="showEdit" class="icon-row" (click)="executeUpdate(element)">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </td>
                         <td *ngIf="showDelete" class="icon-row" (click)="executeDelete(element)">

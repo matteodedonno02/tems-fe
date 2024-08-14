@@ -34,5 +34,6 @@
   "field_required": "Campo vuoto",
   "category_name_pattern": "Il campo deve contenere esclusivamente lettere o numeri",
   "image": "Immagine",
-  "add": "Aggiungi"
+  "add": "Aggiungi",
+  "update": "Aggiorna"
 }

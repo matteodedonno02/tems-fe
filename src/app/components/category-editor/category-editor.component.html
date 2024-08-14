@@ -1,0 +1,61 @@
+<div class="container text-center">
+    <i class="icon-title fa-solid fa-bag-shopping pt-3"></i>
+    <div class="title pt-3 pb-3">
+        {{ "add_category" | translate }}
+    </div>
+
+    <form [formGroup]="categoryForm" novalidate (ngSubmit)="executeOnSave()">
+        <div class="form-container pt-3">
+            <div class="form">
+                <div class="row">
+                    <div class="col-12 form-col pb-4">
+                        <label for="name" class="form-label">
+                            {{ "name" | translate | titlecase }}
+                        </label>
+                        <input formControlName="name" type="text" id="name" class="form-control shadow-none" />
+                        @if (
+                        categoryForm.get("name").errors && categoryForm.get("name").dirty
+                        ) {
+                        @if (
+                        categoryForm.get("name").hasError("required")) {
+                        <div class="form-text form-error">
+                            {{ "field_required" | translate }}
+                        </div>
+                        }
+                        @if (
+                        categoryForm.get("name").hasError("pattern")) {
+                        <div class="form-text form-error">
+                            {{ "category_name_pattern" | translate }}
+                        </div>
+                        }
+                        }
+                    </div>
+                </div>
+
+                <div class="row">
+                    @if(imageUrl) {
+                    <div class="col-12 form-col image-col">
+                        <img [src]="imageUrl" />
+                    </div>
+                    }
+                    <div class="col-12 form-col">
+                        <label for="image" class="form-label">
+                            {{ "image" | translate }}
+                        </label>
+                        <input formControlName="image" class="form-control" type="file" id="image" accept="image/*"
+                            (change)="onImagePicked($event)" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center mt-3">
+                        <button class="btn btn-primary" [disabled]="!categoryForm.valid">
+                            {{ (category ? 'update' : 'add') | translate | titlecase }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- TODO:add article management -->
+    </form>
+</div>

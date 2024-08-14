@@ -1,1 +1,3 @@
-<p>edit-categories works!</p>
+<app-toast idToast="edit-category-error-toast" [message]="editCategoryError"></app-toast>
+<app-category-editor *ngIf="editableCategory" [category]="editableCategory"
+    (onSave)="update($event)"></app-category-editor>

@@ -1,66 +1,49 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {UsersService} from "../../../../services/users.service";
-import {Router} from "@angular/router";
-import {Toast} from "bootstrap";
-import {CategoriesService} from "../../../../services/categories.service";
-import {ToastComponent} from "../../../../components/toast/toast.component";
-import {NgTemplateOutlet, TitleCasePipe} from "@angular/common";
-import {TranslateModule} from "@ngx-translate/core";
-import {SharedModule} from "../../../../shared/shared.module";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { Toast } from "bootstrap";
+import { CategoriesService } from "../../../../services/categories.service";
+import { ToastComponent } from "../../../../components/toast/toast.component";
+import { NgTemplateOutlet, TitleCasePipe } from "@angular/common";
+import { TranslateModule } from "@ngx-translate/core";
+import { SharedModule } from "../../../../shared/shared.module";
+import { CategoryEditorComponent } from '../../../../components/category-editor/category-editor.component';
+import { Category } from '../../../../models/category';
 
 @Component({
   selector: 'app-add-category',
   standalone: true,
   imports: [
-    FormsModule,
-    ReactiveFormsModule,
+    // FormsModule,
+    // ReactiveFormsModule,
     ToastComponent,
-    NgTemplateOutlet,
-    TitleCasePipe,
-    TranslateModule,
+    // NgTemplateOutlet,
+    // TitleCasePipe,
+    // TranslateModule,
+    CategoryEditorComponent,
     SharedModule
   ],
   templateUrl: './add-category.component.html',
   styleUrl: './add-category.component.scss'
 })
-export class AddCategoryComponent implements OnInit {
+export class AddCategoryComponent {
+
   addCategoryError: string = ''
   selectedFile: File | null
-  categoryForm: FormGroup;
-  object = Object
+  categoryForm: FormGroup
 
   constructor(
-    private fb: FormBuilder,
     private categoriesService: CategoriesService,
-    private usersService: UsersService,
     private router: Router
-  ) {
-  }
-
-  ngOnInit() {
-    this.categoryForm = this.fb.group({
-      name: [null, [Validators.required, Validators.minLength(1), Validators.pattern(/^[\wàèéìòù0-9 ]*$/)]],
-      image: [null]
-    })
-  }
-
-  onImagePicked(event: any) {
-    this.selectedFile = event.target.files[0];
-  }
+  ) { }
 
 
-  saveCategory() {
+  saveCategory(event: { file?: File, category: Category }) {
     this.categoriesService
-      .saveOrUpdate(this.selectedFile, {
-        name: this.categoryForm.value.name,
-        disabled: false,
-        //TODO: manage article add
-        articles: []
-      })
+      .save(event.file, event.category)
       .subscribe({
         next: () => {
-          this.router.navigate(['/categories'])
+          this.router.navigate(['admin', 'categories'])
         },
         error: (resp) => {
           this.addCategoryError = resp.error.message

@@ -1,4 +1,4 @@
-export class File {
+export class CustomFile {
     fileName: string
     uuid: string
 }

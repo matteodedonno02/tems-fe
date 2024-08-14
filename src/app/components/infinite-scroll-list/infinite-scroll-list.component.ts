@@ -27,6 +27,7 @@ export class InfiniteScrollListComponent implements OnInit, OnDestroy {
   @Input() showEdit: boolean = false
   @Input() showDelete: boolean = false
   @Input() load: (skip: number, limit: number, searchTerms?: string) => Observable<any[]>
+  @Input() update: (element: any) => void
   @Input() delete: (element: any) => void
 
   searchTerms: string
@@ -81,5 +82,9 @@ export class InfiniteScrollListComponent implements OnInit, OnDestroy {
 
   executeDelete(toDelete: any) {
     this.delete(toDelete)
+  }
+
+  executeUpdate(toUpdate: any) {
+    this.update(toUpdate)
   }
 }

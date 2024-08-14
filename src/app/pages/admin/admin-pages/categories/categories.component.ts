@@ -7,6 +7,7 @@ import { ActionButton, ToastComponent } from "../../../../components/toast/toast
 import { AppEvent, BrokerService } from '../../../../services/broker.service';
 import { Modal, Toast } from 'bootstrap';
 import { ModalComponent } from '../../../../components/modal/modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categories',
@@ -36,12 +37,18 @@ export class CategoriesComponent {
   modalConfirm: () => void
 
   constructor(
+    private router: Router,
     private categoriesService: CategoriesService,
     private brokerService: BrokerService
   ) { }
 
   loadCategories(skip: number, limit: number, searchTerms?: string) {
     return this.categoriesService.getPaged(skip, limit, searchTerms)
+  }
+
+  updateCategory(category: Category) {
+    this.router.navigate(['admin', 'editCategory'])
+    this.brokerService.send(AppEvent.OnEditElement, category)
   }
 
   deleteCategory(category: Category) {
