@@ -7,6 +7,7 @@ import { AppEvent, BrokerService } from '../../services/broker.service';
 export class TableColumn {
   columnName: string
   titlecase?: boolean = false
+  currency?: boolean = false
 }
 
 @Component({

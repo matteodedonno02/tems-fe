@@ -35,5 +35,9 @@
   "category_name_pattern": "Il campo deve contenere esclusivamente lettere o numeri",
   "image": "Immagine",
   "add": "Aggiungi",
-  "update": "Aggiorna"
+  "update": "Aggiorna",
+  "articles": "articoli",
+  "articles_management": "Gestione articoli",
+  "existing_articles": "Articoli esistenti",
+  "add_article": "Aggiungi articolo"
 }

@@ -9,6 +9,7 @@ import { UserRole } from './models/user-role';
 import { CategoriesComponent } from './pages/admin/admin-pages/categories/categories.component';
 import { AddCategoryComponent } from "./pages/admin/admin-pages/add-category/add-category.component";
 import { EditCategoriesComponent } from './pages/admin/admin-pages/edit-categories/edit-categories.component';
+import { ArticlesComponent } from './pages/admin/admin-pages/articles/articles.component';
 
 export const routes: Routes = [
   {
@@ -24,11 +25,14 @@ export const routes: Routes = [
       path: 'categories',
       component: CategoriesComponent,
     }, {
-      path: 'addCategory',
+      path: 'add-category',
       component: AddCategoryComponent
     }, {
-      path: 'editCategory',
+      path: 'edit-category',
       component: EditCategoriesComponent
+    }, {
+      path: 'articles',
+      component: ArticlesComponent
     }]
   },
   {

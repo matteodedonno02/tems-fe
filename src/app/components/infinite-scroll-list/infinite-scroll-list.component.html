@@ -36,8 +36,13 @@
                         </th>
                         <ng-container *ngFor="let column of structure">
                             <td>
-                                {{column.titlecase ? (element[column.columnName].toString() | translate | titlecase) :
-                                (element[column.columnName].toString() | translate)}}
+                                @if(column.titlecase) {
+                                {{element[column.columnName].toString() | translate | titlecase}}
+                                } @else if (column.currency) {
+                                {{element[column.columnName].toString() | currency: 'EUR'}}
+                                } @else {
+                                {{element[column.columnName].toString() | translate}}
+                                }
                             </td>
                         </ng-container>
                         <td *ngIf="showEdit" class="icon-row" (click)="executeUpdate(element)">

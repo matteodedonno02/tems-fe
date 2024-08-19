@@ -42,7 +42,6 @@ export class EditCategoriesComponent implements OnInit {
   }
 
   update(event: { file?: File, category: Category }) {
-    console.log(event.category)
     this.categoriesService
       .update(event.file, event.category)
       .subscribe({

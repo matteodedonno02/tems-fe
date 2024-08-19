@@ -59,6 +59,7 @@ export class InitialConfigurationComponent implements OnInit, AfterViewInit {
       .saveConfiguration(this.selectedFile, shopName)
       .subscribe({
         next: () => {
+          this.usersService.logout()
           this.router.navigate(['admin'])
         }
       })

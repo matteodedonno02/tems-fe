@@ -47,7 +47,7 @@ export class CategoriesComponent {
   }
 
   updateCategory(category: Category) {
-    this.router.navigate(['admin', 'editCategory'])
+    this.router.navigate(['admin', 'edit-category'])
     this.brokerService.send(AppEvent.OnEditElement, category)
   }
 
